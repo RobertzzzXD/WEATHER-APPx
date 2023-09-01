@@ -1,4 +1,4 @@
-
+/* Add margin or padding to create a blank space between city forecasts */
 .city-forecast {
-    margin-bottom: 20px; /* Adaugam o linie care despart valorile dintre cele doua orase */
+    margin-bottom: 20px; /* You can adjust this value to control the spacing */
 }

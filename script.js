@@ -12,7 +12,7 @@ function fetchWeatherData(city) {
             }
 
             const cityKey = data[0].Key;
-            return fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/7day/${cityKey}?apikey=${apiKey}&metric=true`);
+            return fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${apiKey}&metric=true`);
         })
         .then(response => response.json())
         .catch(error => {
@@ -21,9 +21,9 @@ function fetchWeatherData(city) {
 }
 
 function displayWeatherInfo(data, cityName) {
-    if (data && data.DailyForecasts) {
-        const dailyForecasts = data.DailyForecasts.slice(0, 7); // Take the first 7 days
-        for (let i = 0; i < dailyForecasts.length; i++) {
+    if (data) {
+        const dailyForecasts = data.DailyForecasts;
+        for (let i = 0; i < 7; i++) {
             const date = new Date(dailyForecasts[i].Date);
             const dayName = getDayName(date);
             const formattedDate = `${dayName}, ${date.toLocaleDateString()}`;
@@ -34,8 +34,8 @@ function displayWeatherInfo(data, cityName) {
             forecast.innerHTML = `<strong>${formattedDate} (${cityName}):</strong> Min Temp: ${minTemp}°C, Max Temp: ${maxTemp}°C`;
             weatherInfo.appendChild(forecast);
 
-            // Insert a horizontal line between Texas and New York for the 7th day
-            if (cityName === 'Texas' && i === 6) {
+            // Insert a horizontal line between Texas and New York forecasts for the 5th day
+            if (cityName === 'Texas' && i === 4) {
                 const lineBreak = document.createElement('hr');
                 weatherInfo.appendChild(lineBreak);
             }
