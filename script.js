@@ -18,6 +18,7 @@ function fetchWeatherData(city) {
         .catch(error => {
             console.error(`Error fetching data for ${city}:`, error);
         });
+        
 }
 
 function displayWeatherInfo(data, cityName) {
